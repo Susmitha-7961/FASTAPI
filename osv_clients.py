@@ -1,8 +1,6 @@
 import requests
-from cachetools import TTLCache, cached
-
-#cache results for 10 mins
-cache=TTLCache(maxsize=100, ttl=600)
+from cache import cache
+from cachetools import cached
 
 @cached(cache)
 def fetch_vulnerabilities(package_name: str, version: str):

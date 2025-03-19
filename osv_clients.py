@@ -12,5 +12,8 @@ def fetch_vulnerabilities(package_name: str, version: str):
     "version": version
   }
   response = requests.post(url, json=payload)
-  return response.json() if response.status_code ==200
-else{"vulns":[]}
+
+  if response.status_code ==200:
+    return response.json()
+  else:
+    return{"error":f"Failed to fetch vulnerabilities (status{response.status_code})"}
